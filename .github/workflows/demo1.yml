@@ -3,7 +3,21 @@ on:
   pull_request:
     types:
       - opened
+    branches:
+      - master # main
+      - 'dev-*' # dev-new dev-this-is-new
+      - 'feat/**' # feat/new feat/new/button
   workflow_dispatch:
+  push:
+    branches:
+      - master # main
+      - 'dev-*' # dev-new dev-this-is-new
+      - 'feat/**' # feat/new feat/new/button
+    paths-ignore:
+      - '.github/workflows/*'
+      # push-event makes workflow happens
+      # to those branches above only 
+      # when nothing has changes in workflows-folder
 jobs:
   deploy:
     runs-on: ubuntu-latest
